@@ -52,14 +52,22 @@ app.post("/users/create", async (req, res) => {
   res.send("user inserted successfully");
 });
 
-app.get("/write", (req, res) => {
-  console.log(req.body, "request");
+app.get("/users", async (req, res) => {
+  const tableQueryText = `SELECT * from items`;
 
-  res.send("Success");
+  try {
+    const users = await db.query(tableQueryText);
+    res.send(users.rows);
+  } catch (error) {
+    console.error(error);
+  }
+
+  res.send("Select All Users");
 });
 
-app.post("/read", (req, res) => {
-  res.send();
+app.put("/users/:id", async (req, res) => {
+  const { id } = req.params;
+  const { name, email } = req.body;
 });
 
 app.listen(port, () => {
