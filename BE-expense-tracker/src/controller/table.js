@@ -1,4 +1,5 @@
 import { db } from "../../db.js";
+
 export const createUserTable = async (req, res) => {
   const tableQueryText = `
         CREATE TABLE users ( 
@@ -29,7 +30,7 @@ export const createRecordTable = async (req, res) => {
       createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       category_id TEXT,
-      transaction_type TEXT )`;
+      transaction_type mood DEFAULT 'DEPOSIT' NOT NULL)`;
 
   try {
     await db.query(tableQueryText);

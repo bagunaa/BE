@@ -15,23 +15,24 @@ export const createUser = async (req, res) => {
       avatar_img,
       currency_type,
     ]);
+    res.send(result.rows);
   } catch (error) {
     console.error(error);
+    res.send(error);
   }
-
-  res.send("user inserted successfully");
 };
 export const getUser = async (req, res) => {
-  const tableQueryText = `SELECT * from items`;
+  const tableQueryText = `SELECT * from users`;
 
   try {
     const users = await db.query(tableQueryText);
+    console.log(users, "users");
     res.send(users.rows);
+    res.end();
   } catch (error) {
     console.error(error);
+    res.send("db error");
   }
-
-  res.send("Select All Users");
 };
 
 export const editUser = async (req, res) => {
