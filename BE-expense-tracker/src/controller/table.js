@@ -7,7 +7,7 @@ export const createUserTable = async (req, res) => {
           email VARCHAR(50) UNIQUE NOT NULL,
           name VARCHAR(255) NOT NULL,
           password TEXT,
-          avatar_img BYTEA,
+          avatar_img TEXT,
           createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
           updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
           currency_type mood DEFAULT 'EUR' NOT NULL)`;
