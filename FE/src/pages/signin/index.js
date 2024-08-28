@@ -1,13 +1,36 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-// import GeldLogo from "../../components/ui/mycomponents/GeldLogo";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { useRef } from "react";
+import LogoIcon from "@/components/ui/assets/LogoIcon.svg";
+import Image from "next/image";
 
 const Signin = () => {
+  const router = useRef();
+  const formRef = useRef(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new formData(formRef.current);
+    const { email, password } = Object.fromEntries(formData);
+    try {
+      const response = await axios.post("hhtp://localhost:8000/api/signin", {
+        email,
+        password,
+      });
+      localStorage.setItem("user", JSON.stringify(response.data.user[0]));
+      router.push("/dashboard");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className=" w-[100%] h-[100vh] flex">
       <div className="w-1/2 flex flex-col justify-center items-center gap-10">
         <div className="flex gap-[9.459px] items-center">
-          {/* <GeldLogo /> */}
+          <Image src="/LogoIcon.svg" width={92} height={34} />
           <p className="font-semibold text-2xl">Geld</p>
         </div>
 
