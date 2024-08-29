@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { Loader2 } from "lucide-react";
-import LogoIcon from "./components/LogoIcon";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,9 +11,9 @@ export default function Home() {
   return (
     <div className="flex w-full">
       <div className="w-full h-screen flex flex-col items-center justify-center gap-12">
-        <div className="flex">
+        {/* <div className="flex">
           <LogoIcon />
-        </div>
+        </div> */}
 
         <div className="flex flex-col items-center justify-center">
           <Button className="bg-white" disabled>
